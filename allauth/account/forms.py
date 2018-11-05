@@ -39,7 +39,7 @@ class EmailAwarePasswordResetTokenGenerator(PasswordResetTokenGenerator):
             EmailAwarePasswordResetTokenGenerator, self)._make_hash_value(
                 user, timestamp)
         sync_user_email_addresses(user)
-        emails = set([user.email])
+        emails = set([getattr(user, app_settings.USER_MODEL_EMAIL_FIELD)])
         emails.update(
             EmailAddress.objects
             .filter(user=user)
