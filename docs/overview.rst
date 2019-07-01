@@ -123,6 +123,8 @@ Supported Providers
 
 - Microsoft (Graph) (OAuth2)
 
+- NextCloud (OAuth2)
+
 - Naver (OAuth2)
 
 - Odnoklassniki (OAuth2)
@@ -145,6 +147,8 @@ Supported Providers
 
 - Salesforce (OAuth2)
 
+- ShareFile (OAuth2)
+
 - Shopify (OAuth2)
 
 - Slack (OAuth2)
@@ -156,6 +160,8 @@ Supported Providers
 - Stack Exchange (OAuth2)
 
 - Steam (OpenID)
+
+- Strava (OAuth2)
 
 - Stripe (OAuth2)
 

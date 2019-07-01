@@ -1,3 +1,16 @@
+0.39.2 (unreleased)
+*******************
+
+Note worthy changes
+-------------------
+
+- The ``instagram`` provider now extracts the user's full name.
+- New provider: NextCloud (OAuth2)
+
+- Added an ``SDK_URL`` setting for customizing the loading of the Facebook
+  JavaScript SDK.
+
+
 0.39.1 (2019-02-28)
 *******************
 
@@ -6,6 +19,12 @@ Note worthy changes
 
 - The ``linkedin_oauth2`` provider now gracefully deals with old V1
   data that might still be present in ``SocialAccount.extra_data``.
+
+Backwards incompatible changes
+------------------------------
+
+- The ``globus`` provider's ``extract_uid`` now uses the openid
+  required field ``sub`` instead of the ``create_time`` field.
 
 
 0.39.0 (2019-02-26)
