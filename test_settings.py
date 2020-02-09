@@ -52,6 +52,7 @@ INSTALLED_APPS = (
     'allauth.socialaccount',
     'allauth.socialaccount.providers.agave',
     'allauth.socialaccount.providers.amazon',
+    'allauth.socialaccount.providers.amazon_cognito',
     'allauth.socialaccount.providers.angellist',
     'allauth.socialaccount.providers.asana',
     'allauth.socialaccount.providers.auth0',
@@ -140,6 +141,7 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.windowslive',
     'allauth.socialaccount.providers.xing',
     'allauth.socialaccount.providers.yahoo',
+    'allauth.socialaccount.providers.yandex',
     'allauth.socialaccount.providers.ynab',
 )
 
