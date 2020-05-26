@@ -117,6 +117,8 @@ Supported Providers
 
 - Kakao (OAuth2)
 
+- Keycloak (OAuth2)
+
 - Line (OAuth2)
 
 - LinkedIn (OAuth, OAuth2)
@@ -128,6 +130,8 @@ Supported Providers
 - Meetup (OAuth2)
 
 - Microsoft (Graph) (OAuth2)
+
+- Mixer (OAuth2)
 
 - NextCloud (OAuth2)
 
