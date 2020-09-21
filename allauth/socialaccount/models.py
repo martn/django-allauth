@@ -62,6 +62,13 @@ class SocialApp(models.Model):
     # blank=True allows for disabling apps without removing them
     sites = models.ManyToManyField(Site, blank=True)
 
+    # We want to move away from storing secrets in the database. So, we're
+    # putting a halt towards adding more fields for additional secrets, such as
+    # the certificate some providers need. Therefore, the certificate is not a
+    # DB backed field and can only be set using the ``APP`` configuration key in
+    # the provider settings.
+    certificate = None
+
     class Meta:
         verbose_name = _('social application')
         verbose_name_plural = _('social applications')
@@ -297,7 +304,7 @@ class SocialLogin(object):
     @classmethod
     def stash_state(cls, request):
         state = cls.state_from_request(request)
-        verifier = get_random_string()
+        verifier = get_random_string(12)
         request.session['socialaccount_state'] = (state, verifier)
         return verifier
 
