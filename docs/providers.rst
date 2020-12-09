@@ -122,6 +122,55 @@ Development callback URL
     http://localhost:8000/accounts/angellist/login/callback/
 
 
+Apple
+-----
+
+App registration (create an App ID and then a related Service ID here)
+    https://developer.apple.com/account/resources/certificates/list
+
+Private Key registration (be sure to save it)
+    https://developer.apple.com/account/resources/authkeys/list
+
+Development callback URL
+    http://domain.com/accounts/apple/login/callback/
+
+Add the following configuration to your settings:
+
+.. code-block:: python
+
+    SOCIALACCOUNT_PROVIDERS = {
+        "apple": {
+            "APP": {
+                # Your service identifier.
+                "client_id": "your.service.id",
+
+                # The Key ID (visible in the "View Key Details" page).
+                "secret": "KEYID",
+
+                 # Member ID/App ID Prefix -- you can find it below your name
+                 # at the top right corner of the page, or it’s your App ID
+                 # Prefix in your App ID.
+                "key": "MEMAPPIDPREFIX",
+
+                # The certificate you downloaded when generating the key.
+                "certificate_key": """-----BEGIN PRIVATE KEY-----
+    s3cr3ts3cr3ts3cr3ts3cr3ts3cr3ts3cr3ts3cr3ts3cr3ts3cr3ts3cr3ts3cr
+    3ts3cr3ts3cr3ts3cr3ts3cr3ts3cr3ts3cr3ts3cr3ts3cr3ts3cr3ts3cr3ts3
+    c3ts3cr3t
+    -----END PRIVATE KEY-----
+    """
+            }
+        }
+    }
+
+Note: Sign In With Apple uses a slight variation of OAuth2, which uses a POST
+instead of a GET. Unlike a GET with SameSite=Lax, the session cookie will not
+get sent along with a POST. If you encounter 'PermissionDenied' errors during
+Apple log in, check that you don't have any 3rd party middleweare that is
+generating a new session on this cross-origin POST, as this will prevent the
+login process from being able to access the original session after the POST
+completes.
+
 Auth0
 -----
 
@@ -861,11 +910,15 @@ Optionally, you can specify the scope to use as follows:
         }
     }
 
-By default, ``profile`` scope is required, and optionally ``email`` scope
-depending on whether or not ``SOCIALACCOUNT_QUERY_EMAIL`` is enabled.
+By default (if you do not specify ``SCOPE``), ``profile`` scope is
+requested, and optionally ``email`` scope depending on whether or not
+``SOCIALACCOUNT_QUERY_EMAIL`` is enabled.
 
 You must set ``AUTH_PARAMS['access_type']`` to ``offline`` in order to
-receive a refresh token on first login and on reauthentication requests.
+receive a refresh token on first login and on reauthentication requests
+(which is needed to refresh authentication tokens in the background,
+without involving the user's browser). When unspecified, Google defaults
+to ``online``.
 
 
 Instagram
@@ -1137,6 +1190,20 @@ App registration (get your key and secret here)
 Development callback URL
     http://example.com/accounts/odnoklassniki/login/callback/
 
+
+Okta
+-----
+
+.. code-block:: python
+
+    SOCIALACCOUNT_PROVIDERS = {
+        'okta': {
+            'OKTA_BASE_URL': 'example.okta.com',
+        }
+    }
+
+Okta OIDC
+    https://developer.okta.com/docs/reference/api/oidc/
 
 OpenID
 ------
@@ -1871,6 +1938,16 @@ Yahoo
 
 Register your OAuth2 app below and enter the resultant client id and secret into admin
     https://developer.yahoo.com/apps/create/
+
+The Redirect URL requires secure URLs, please see the section on HTTPS about how this is handled.
+
+When you register the app within yahoo, ensure you select the following API Permissions
+
+- OpenID Connect Permissions
+ - Email
+ - Profile
+
+When copying the supplied Client ID and Client Secret, do not include the 4 starting spaces.
 
 
 Yandex
